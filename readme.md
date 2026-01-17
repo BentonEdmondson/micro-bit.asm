@@ -8,3 +8,4 @@
 * OpenOCD support
   * Target chip (nRF51): https://github.com/openocd-org/openocd/blob/master/tcl/target/nordic/nrf51.cfg
   * Interface (CMSIS-DAP): https://github.com/openocd-org/openocd/blob/master/tcl/interface/cmsis-dap.cfg
+  * Documentation: https://openocd.org/doc/html/
