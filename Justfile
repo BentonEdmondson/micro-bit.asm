@@ -1,5 +1,5 @@
 set shell := [
-    "podman", "run",
+    "podman", "container", "run",
     "--mount", "type=bind,src=.,dst=/...",
     "--workdir", "/...",
     "micro-bit.asm:7db0a40",
@@ -9,7 +9,7 @@ set shell := [
 setup: clean
     #!/usr/bin/env sh
     set -e
-    podman build --tag micro-bit.asm:7db0a40 .
+    podman image build --tag micro-bit.asm:7db0a40 .
 
 clean:
     #!/usr/bin/env sh
@@ -27,7 +27,7 @@ analyze: build
     arm-none-eabi-objdump --disassemble target/firmware.elf
 
 flash: build
-    openocd --file openocd.cfg --command 'program target/firmware.bin 0x0 preverify verify reset exit'
+    openocd --file openocd.cfg --command 'program target/firmware.bin 0x0 verify reset exit'
 
 debug: build
     openocd --file openocd.cfg
