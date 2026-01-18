@@ -1,4 +1,4 @@
-# micro:bit Assembly Programming
+# micro:bit assembly programming
 
 * Board: micro:bit V1.3
   * [micro:bit V1.3 reference page](https://tech.microbit.org/hardware/1-3-revision/)
@@ -9,3 +9,10 @@
   * Target chip (nRF51): https://github.com/openocd-org/openocd/blob/master/tcl/target/nordic/nrf51.cfg
   * Interface (CMSIS-DAP): https://github.com/openocd-org/openocd/blob/master/tcl/interface/cmsis-dap.cfg
   * Documentation: https://openocd.org/doc/html/
+
+## Build dependencies
+
+* `coreutils`
+* `sh`
+* `just`: https://github.com/casey/just
+* `podman`: https://github.com/containers/podman
