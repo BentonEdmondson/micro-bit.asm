@@ -7,12 +7,12 @@ set shell := [
 ]
 
 setup: clean
-    #!/usr/bin/env bash
+    #!/usr/bin/env sh
     set -e
     podman build --tag micro-bit.asm:7db0a40 .
 
 clean:
-    #!/usr/bin/env bash
+    #!/usr/bin/env sh
     set -e
     rm -rfv target
     if podman image exists micro-bit.asm:7db0a40; then
