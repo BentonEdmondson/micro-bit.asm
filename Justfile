@@ -1,10 +1,15 @@
 set shell := [
     "podman", "container", "run",
     "--mount", "type=bind,src=.,dst=/...",
+    "--privileged",
+    "--interactive",
+    "--network=host",
     "--workdir", "/...",
     "micro-bit.asm:7db0a40",
     "bash", "-c"
 ]
+
+# To do: make --privileged instead be --userns=keep-id or something
 
 setup: clean
     #!/usr/bin/env sh
@@ -29,8 +34,11 @@ analyze: build
 flash: build
     openocd --file openocd.cfg --command 'program target/firmware.bin 0x0 verify reset exit'
 
-debug: build
+debug-server:
     openocd --file openocd.cfg
+
+debug-client:
+    pwndbg -ex 'target extended-remote :3333'
 
 run +args:
     {{ args }}
