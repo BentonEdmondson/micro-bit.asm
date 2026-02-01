@@ -26,19 +26,19 @@ clean:
     fi
 
 build:
-    make target/firmware.bin
+    make target/firmware.bin target/firmware.elf
 
 analyze: build
     arm-none-eabi-objdump --disassemble target/firmware.elf
 
 flash: build
-    openocd --file openocd.cfg --command 'program target/firmware.bin 0x0 verify reset exit'
+    openocd --file openocd.cfg --command 'program target/firmware.bin verify reset exit'
 
 debug-server:
     openocd --file openocd.cfg
 
 debug-client:
-    pwndbg -ex 'target extended-remote :3333'
+    pwndbg --eval-command 'target extended-remote :3333' --symbols target/firmware.elf
 
 run +args:
     {{ args }}
