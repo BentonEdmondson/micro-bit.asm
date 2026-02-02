@@ -34,6 +34,9 @@ analyze: build
 flash: build
     openocd --file openocd.cfg --command 'program target/firmware.bin verify reset exit'
 
+wipe:
+    openocd --file openocd.cfg --command 'init; halt; nrf51 mass_erase; reset; exit'
+
 debug-server:
     openocd --file openocd.cfg
 
